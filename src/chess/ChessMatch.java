@@ -1,5 +1,6 @@
 package chess;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -149,7 +150,24 @@ public class ChessMatch {
     	Piece p = board.removePiece(pos);
     	piecesOnTheBoard.remove(p);
     	
+    	
+    	ChessPiece newPiece = newPiece(type, promoted.getColor());
+    	board.placePiece(newPiece, pos);
+    	piecesOnTheBoard.add(newPiece);
+    	
+    	return newPiece;
     }
+    
+    
+    private ChessPiece newPiece(String type, Color color) {
+    	if (type.equals("B")) return new Bishop(board, color);
+    	if (type.equals("N")) return new Knight(board, color);
+    	if (type.equals("Q")) return new Queen(board, color);
+        return new Bishop(board, color);
+	
+    	
+    }
+    
     
      
     private Piece makeMove(Position source, Position target) {
@@ -354,8 +372,6 @@ public class ChessMatch {
     }
     
     private void InitialSetup() {
-    	
-    	
     	placeNewPiece('d', 1, new Queen(board, Color.WHITE));
     	placeNewPiece('a', 1, new Rook(board, Color.WHITE));
     	placeNewPiece('b', 1, new Knight(board, Color.WHITE));
