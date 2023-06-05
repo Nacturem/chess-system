@@ -1,2 +1,2 @@
 # chess-system
-Projeto de jogo de xadrez para feito em Java para rodar no cmd. 
+Projeto de jogo de xadrez feito em Java para rodar no cmd. 
